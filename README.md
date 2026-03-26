@@ -10,3 +10,5 @@ Topics covered:
 __task-1__: Multiprocessing on Unix
 
 __task-2__: Multiprocessing  with queue + Mutex on MS Windows (Python)
+
+__task-3__: Multiprocessing  with shared memory + Semaphore on MS Windows (Python)
