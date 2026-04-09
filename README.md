@@ -14,3 +14,5 @@ __task-2__: Multiprocessing  with queue + Mutex on MS Windows (Python)
 __task-3__: Multiprocessing  with shared memory + Semaphore on MS Windows (Python)
 
 __task-4__: Multiprocessing  with Pipes + condition variables on MS Windows (Python)
+
+__task-5__: Sockets on MS Windows
