@@ -1,0 +1,85 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <pthread.h>
+#include <unistd.h>
+#include <chrono>
+
+#define INITIAL_NUMBER_OF_TICKETS 200
+#define MINIMAL_NUMBER_OF_TICKETS 0
+#define NUMBER_OF_THREADS 5
+
+using namespace std;
+
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+int numberOfTickets = INITIAL_NUMBER_OF_TICKETS;
+
+struct Input {
+    pthread_t thread;
+    int id;
+    string movieTitle;
+};
+
+void* sell(void* arg) {
+    Input* data = (Input*)arg;
+
+    // run until the loop breaks
+    while (true) {
+        // changing global variable, therefore the section needs to be locked
+        pthread_mutex_lock(&mutex);
+
+        // if number of tickets is greater than minimal
+        if (numberOfTickets > MINIMAL_NUMBER_OF_TICKETS)
+        {
+            // decrease number of tickets
+            numberOfTickets = numberOfTickets - 1;
+
+            cout << "Thread [" << data->id << "] for " << data->movieTitle << ". Tickets left: " << numberOfTickets << endl;
+            
+            // unlock
+            pthread_mutex_unlock(&mutex);
+            // simulate using sleep
+            sleep(1);
+        }
+        else
+        {
+            // unlock and break if the number of tickets is minimal
+            pthread_mutex_unlock(&mutex);
+            break;
+        }
+    }
+
+    return nullptr;
+}
+
+int main() {
+    // start measuring time
+    auto start = chrono::high_resolution_clock::now();
+
+    vector<Input> workers(NUMBER_OF_THREADS);
+
+    // initialize threads, giving their id and movie title
+    for (int i = 0; i < NUMBER_OF_THREADS; i++) {
+        workers[i].id = i + 1;
+        workers[i].movieTitle = "Movie";
+
+        pthread_create(&workers[i].thread, nullptr, sell, &workers[i]);
+    }
+
+    // Join all the threads
+    for(int i = 0; i < NUMBER_OF_THREADS; i++)
+    {
+        pthread_join(workers[i].thread, nullptr);
+    }
+
+    // end measuring time
+    auto end = chrono::high_resolution_clock::now();
+
+    chrono::duration<double> duration = end - start;
+
+    // print the duration of the operation
+    cout << "The whole operation took: " << duration.count() << " seconds\n";
+
+    return 0;
+}
+
