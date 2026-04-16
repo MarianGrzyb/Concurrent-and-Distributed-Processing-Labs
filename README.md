@@ -16,3 +16,5 @@ __task-3__: Multiprocessing  with shared memory + Semaphore on MS Windows (Pytho
 __task-4__: Multiprocessing  with Pipes + condition variables on MS Windows (Python)
 
 __task-5__: Sockets on MS Windows
+
+__task-6__: POSIX threads with Mutex (C++) on Linux or Mac
