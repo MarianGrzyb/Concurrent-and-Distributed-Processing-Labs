@@ -18,3 +18,5 @@ __task-4__: Multiprocessing  with Pipes + condition variables on MS Windows (Pyt
 __task-5__: Sockets on MS Windows
 
 __task-6__: POSIX threads with Mutex (C++) on Linux or Mac
+
+__task-7__: POSIX threads with condition variables (C++) on Linux or Mac
