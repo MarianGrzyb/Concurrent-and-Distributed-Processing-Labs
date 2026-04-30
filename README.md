@@ -20,3 +20,5 @@ __task-5__: Sockets on MS Windows
 __task-6__: POSIX threads with Mutex (C++) on Linux or Mac
 
 __task-7__: POSIX threads with condition variables (C++) on Linux or Mac
+
+__task-8__: Pipes application (C++ or python)
