@@ -22,3 +22,5 @@ __task-6__: POSIX threads with Mutex (C++) on Linux or Mac
 __task-7__: POSIX threads with condition variables (C++) on Linux or Mac
 
 __task-8__: Pipes application (C++ or python)
+
+__task-9__: Queue (fifo) application (C++ or python)
